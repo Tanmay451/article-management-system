@@ -3,7 +3,7 @@
 package main
 
 import (
-	"os"
+	"ams/services"
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
@@ -23,5 +23,5 @@ func main() {
 	}
 
 	// Start serving the application
-	router.Run(":" + os.Getenv("APP_PORT"))
+	router.Run(":" + services.GetAppPORT())
 }
