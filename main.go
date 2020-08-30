@@ -3,6 +3,7 @@
 package main
 
 import (
+	"ams/routes"
 	"ams/services"
 
 	"github.com/gin-gonic/gin"
@@ -13,14 +14,13 @@ var router *gin.Engine
 
 func main() {
 
-	// Set the router as the default one provided by Gin
-	router = gin.Default()
-
 	// Load .env file
 	err := godotenv.Load()
 	if err != nil {
 		panic(err)
 	}
+
+	router := routes.InitializeRoutes()
 
 	// Start serving the application
 	router.Run(":" + services.GetAppPORT())
