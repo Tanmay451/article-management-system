@@ -1,8 +1,8 @@
-name: Go
+name: Go-Check
 
 on:
-  push:
-    branches: [ master ]
+  pull_request:
+    branches: [ master, development]
 
 jobs:
 
@@ -27,19 +27,8 @@ jobs:
             curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
             dep ensure
         fi
-
     - name: Build
       run: go build -v .
 
     - name: Test
       run: go test -v .
-
-    - shell: bash
-      run: |
-          go build -o ./app 
-          
-    - name: Upload artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: artifact
-        path: app
