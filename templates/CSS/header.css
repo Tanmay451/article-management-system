@@ -57,8 +57,24 @@ header{
   color: #ff6b6b;
 }
 
+.create{
+  color: #b1ec8a;
+}
+
+.register{
+  color: #40eec2;
+}
+
+.login{
+  color: #7da3eb;
+}
+
+.logout{
+  color: #ff6b6b;
+}
+
 .about{
-  color: #0abde3;
+  color: #202222;
 }
 
 .works{
