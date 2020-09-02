@@ -1,7 +1,8 @@
 package configuration
 
 import (
-	"log"
+	"ams/services"
+	"errors"
 	"os"
 
 	"gorm.io/driver/postgres"
@@ -24,11 +25,14 @@ func getDatabaseConnectionString() string {
 	dbhost := os.Getenv("DBHOST")
 	dbport := os.Getenv("DBPORT")
 
+	// Will check is any variable is not empty, is so it will panic with error message.
+	if dbuser == "" || dbpass == "" || dbname == "" || dbhost == "" || dbport == "" {
+		err := errors.New("Database environment variable is not good, its empty")
+		services.PanicIfError(err)
+	}
+
 	connectionString := "user=" + dbuser + " password=" + dbpass + " dbname=" + dbname + " port=" + dbport + " host=" + dbhost + " sslmode=disable"
 
-	if dbuser == "" {
-		log.Println("BAD ENVIRONMENT")
-	}
 	return connectionString
 }
 
@@ -42,9 +46,7 @@ func openDB() {
 		PreferSimpleProtocol: true, // disables implicit prepared statement usage
 	}), &gorm.Config{})
 
-	if err != nil {
-		panic(err)
-	}
+	services.PanicIfError(err)
 }
 
 // GetDB will return orm object for databae connection.
