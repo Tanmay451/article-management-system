@@ -1,0 +1,32 @@
+<!--menu.html-->
+
+<nav class="navbar navbar-default">
+  <div class="container">
+    
+    <nav class="navigation-menu">
+      <ul class="nav navbar-nav">
+      <i class="menu-toggle-btn fas fa-bars"></i>    
+        {{ if .is_logged_in }}
+          <!--Display this link only when the user is logged in-->
+          <li><a href="/article/create"><i class="fas fa-cookie create"></i> Create Article</a></li>
+        {{end}} 
+        {{ if not .is_logged_in }}
+          <!--Display this link only when the user is not logged in-->
+          {{/* <li><a href="/u/register">Register</a></li> */}}
+          <li><a href="/u/register"><i class="fas fa-registered register"></i> Register</a></li>
+        {{end}} 
+        {{ if not .is_logged_in }}
+          <!--Display this link only when the user is not logged in-->
+          {{/* <li><a href="/u/login">Login</a></li> */}}
+          <li><a href="/u/login"><i class="fas fa-sign-in-alt login"></i> Login</a></li>
+        {{end}} 
+        {{ if .is_logged_in }}
+          <!--Display this link only when the user is logged in-->
+          {{/* <li><a href="/u/logout">Logout</a></li> */}}
+          <li><a href="/u/logout"><i class="fas fa-sign-out-alt logout"></i> Logout</a></li>
+        {{end}}
+        <li><a href="#"><i class="fas fa-align-left about"></i> About</a></li>
+      </ul>
+    </nav>
+  </div>
+</nav>

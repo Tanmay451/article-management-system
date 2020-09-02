@@ -14,7 +14,12 @@ func InitializeRoutes() *gin.Engine {
 
 	// Process the templates at the start so that they don't have to be loaded
 	// from the disk again. This makes serving HTML pages very fast.
-	router.LoadHTMLGlob("templates/*")
+	router.LoadHTMLGlob("templates/HTML/*")
+
+	// Static serves files from the given file system root.
+	// So, the relative path of file changes to css insted of http.FileServer
+	router.Static("css", "templates/CSS")
+	router.Static("img", "templates/img")
 
 	// Use the setUserStatus middleware for every route to set a flag
 	// indicating whether the request was from an authenticated user or not
