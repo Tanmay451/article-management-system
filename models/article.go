@@ -10,7 +10,7 @@ type Article struct {
 // For this demo, we're storing the article list in memory
 // In a real application, this list will most likely be fetched
 // from a database or from static files
-var articleList = []Article{
+var ArticleList = []Article{
 	Article{ID: 1, Title: "Article 1", Content: "Article 1 body"},
 	Article{ID: 2, Title: "Article 2", Content: "Article 2 body"},
 	Article{ID: 3, Title: "Article 3", Content: "Article 3 body"},
@@ -19,5 +19,5 @@ var articleList = []Article{
 
 // GetAllArticles will return a list of all the articles
 func GetAllArticles() []Article {
-	return articleList
+	return ArticleList
 }
