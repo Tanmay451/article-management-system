@@ -16,9 +16,7 @@ func main() {
 
 	// Load .env file
 	err := godotenv.Load()
-	if err != nil {
-		panic(err)
-	}
+	services.PanicIfError(err)
 
 	router := routes.InitializeRoutes()
 
