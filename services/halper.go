@@ -11,14 +11,14 @@ import (
 // GetRouter is helper function to create a router during testing
 func GetRouter(withTemplates bool) *gin.Engine {
 	gin.SetMode(gin.ReleaseMode)
-	r := gin.Default()
+	router := gin.Default()
 	if withTemplates {
-		r.LoadHTMLGlob("./../templates/HTML/*")
-		r.Static("css", "./../templates/CSS")
-		r.Static("img", "./../templates/img")
-		r.Use(setUserStatus())
+		router.LoadHTMLGlob("./../templates/HTML/*")
+		router.Static("css", "./../templates/CSS")
+		router.Static("img", "./../templates/img")
+		router.Use(setUserStatus())
 	}
-	return r
+	return router
 }
 
 // TestHTTPResponse is a helper function to process a request and test its response
