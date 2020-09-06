@@ -2,6 +2,7 @@ package unit_test
 
 import (
 	"ams/handlers"
+	"ams/routes"
 	"ams/services"
 	"net/http"
 	"net/http/httptest"
@@ -32,7 +33,7 @@ func TestLoginAuthenticated(t *testing.T) {
 	http.SetCookie(w, &http.Cookie{Name: "token", Value: "123"})
 
 	// Define the route similar to its definition in the routes file
-	r.POST("/u/login", services.EnsureNotLoggedIn(), handlers.PerformLogin)
+	r.POST("/u/login", routes.EnsureNotLoggedIn(), handlers.PerformLogin)
 
 	// Create a request to send to the above route
 	loginPayload := getLoginPOSTPayload()
