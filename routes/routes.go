@@ -28,5 +28,14 @@ func InitializeRoutes() *gin.Engine {
 	// Handle the index route
 	router.GET("/", handlers.ShowIndexPage)
 
+	// Group user related routes together
+	userRoutes := router.Group("/u")
+	{
+		// Handle POST requests at /u/login
+		// Ensure that the user is not logged in by using the middleware
+		userRoutes.POST("/login", EnsureNotLoggedIn(), handlers.PerformLogin)
+
+	}
+
 	return router
 }
